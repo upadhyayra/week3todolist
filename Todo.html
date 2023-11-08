@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section>
+        <div class="">
+            <div class="row" style="margin: 0;">
+                <div class="col-md-3"></div>
+                <div class="col-md-5 todolist">
+                    <h1 style="text-align: center; font-weight: 900; font-size: 50px;">Todo List</h1>
+                    <form>
+                        <input type="text" class="form-control" id="myText" placeholder="Enter a task">
+                        <button class="btn btn-primary form-control mt-3" type="submit">Add</button>
+                    </form>
+                    <div class="ul-li" style="width: 100%;">
+                        <ul id="ul" style="list-style: decimal; width: 100%;" class="ps-0">
+                            <h3 style="text-align: center; font-weight: bolder; color: beige;"></h3>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-5">
+                    <div style="margin-top:50px"><a href="clock.html">Time</a>
+                        <a href="../chatbox/index.html">Chatbot</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let count = 0;
+        let form = document.querySelector('form')
+        let ul = document.getElementById('ul')
+        let tasks = document.querySelector('h3')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            count++;
+            tasks.innerHTML = "Tasks"
+            let input = myText.value
+            let li = document.createElement("li")
+            li.setAttribute('class', 'list')
+            if (input.trim() == "") {
+                alert("please enter a value")
+                return
+            }
+            inputText = input.trim();
+
+            li.style.paddingLeft = "10px"
+            li.innerHTML = inputText
+            ul.appendChild(li)
+            let deletebtn = document.createElement('button')
+            li.appendChild(deletebtn)
+            deletebtn.innerHTML = "Delete"
+            deletebtn.setAttribute('class', 'btn btn-danger')
+            deletebtn.addEventListener('click', myDelete)
+            function myDelete() {
+                result = confirm("Are you Sure Delete");
+                if (result == true) {
+                    li.remove();
+                    count--;
+                }
+                if (count == 0) {
+                    tasks.innerHTML = ""
+                }
+            }
+            myText.value = ""
+        })
+    </script>
+</body>
+
+</html>
